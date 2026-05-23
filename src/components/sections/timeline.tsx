@@ -102,18 +102,39 @@ const DPR_STAGES = [
 
 export default function Timeline() {
   return (
-    <section className="bg-background-light py-24 border-b border-industrial-silver relative overflow-hidden industrial-grid">
+    <section className="bg-background-light py-32 border-b border-industrial-silver relative overflow-hidden industrial-grid">
+      
+      {/* Pipeline Operations Atmospheric Background */}
+      <div className="absolute inset-0 z-0">
+        <motion.img 
+          src="/images/operations.png" 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover opacity-12 mix-blend-multiply"
+          style={{ filter: 'contrast(1.1) brightness(1.05) saturate(0.9)' }}
+          animate={{
+            x: [0, -8, 0],
+            opacity: [0.12, 0.14, 0.12]
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/93 via-white/89 to-industrial-lime/5" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="border-l-4 border-industrial-dark pl-4 md:pl-6 max-w-3xl">
+        <div className="border-l-4 border-industrial-dark pl-4 md:pl-6 max-w-3xl mb-12">
           <span className="font-technical text-xs text-industrial-slate uppercase tracking-widest font-bold block">
             [ DATA PIPELINE ARCHITECTURE ]
           </span>
-          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-industrial-dark mt-2">
+          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-industrial-dark mt-3">
             INDUSTRIAL FIELD EXECUTION PIPELINE
           </h2>
-          <p className="mt-4 text-sm text-industrial-slate leading-relaxed font-sans">
+          <p className="mt-5 text-sm text-industrial-slate leading-relaxed font-sans max-w-2xl">
             How raw field logs translate into audited, compliant enterprise analytics. EPCX establishes an unbroken digital chain of custody from gate punch-ins to bank wage disbursement.
           </p>
         </div>

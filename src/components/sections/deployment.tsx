@@ -17,10 +17,30 @@ const TIMELINE = [
 
 export default function Deployment() {
   return (
-    <section id="deployment" className="bg-industrial-dark text-white py-24 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
+    <section id="deployment" className="bg-industrial-dark text-white py-32 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
       
+      {/* Deployment Environment Atmospheric Background */}
+      <div className="absolute inset-0 z-0">
+        <motion.img 
+          src="/images/deployment.png" 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover opacity-18 mix-blend-overlay"
+          style={{ filter: 'contrast(1.15) brightness(0.65) saturate(0.85)' }}
+          animate={{
+            scale: [1, 1.04, 1],
+            opacity: [0.18, 0.2, 0.18]
+          }}
+          transition={{
+            duration: 24,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-industrial-dark/92 via-industrial-dark/88 to-industrial-slate/10" />
+      </div>
+
       {/* Absolute Diagonal Stripes Decorator */}
-      <div className="absolute top-0 right-0 w-48 h-1 bg-industrial-lime opacity-30" />
+      <div className="absolute top-0 right-0 w-48 h-1 bg-industrial-lime opacity-30 z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -30,10 +50,10 @@ export default function Deployment() {
             [ FIELD DEPLOYMENT MATURITY ]
           </span>
           <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mt-2">
-            DESIGNED FOR HARSH PROJECT ENVIRONMENTS
+            ENGINEERED FOR ACTIVE INDUSTRIAL OPERATIONS
           </h2>
           <p className="mt-4 text-sm text-industrial-silver leading-relaxed font-sans">
-            EPCX is not built for cozy office workspaces. Our platform is engineered to function inside high-heat refineries, remote onshore fabrication yards, offshore structures, and low-connectivity environments.
+            EPCX is built for real industrial environments — high-heat refineries, remote fabrication yards, offshore structures, and low-connectivity sites. Our platform handles workforce management, contractor coordination, and operational reporting where traditional systems fail.
           </p>
         </div>
 
@@ -50,10 +70,10 @@ export default function Deployment() {
                 INFRASTRUCTURE // 01
               </div>
               <h3 className="font-technical text-sm font-bold uppercase tracking-wide text-white mt-3 flex items-center gap-2">
-                Offline-First Mobile App
+                Offline-First Field Operations
               </h3>
               <p className="text-xs text-industrial-silver leading-relaxed font-sans mt-3">
-                Field supervisors can capture biometric facial checks, scan worker QR badges, and log site transfers on their mobile devices without active cell signal or Wi-Fi. Data queues locally and syncs automatically when a connection is established.
+                Field supervisors capture attendance, track workforce, and log operations without connectivity. Data queues locally and syncs automatically — ensuring continuous operations in remote sites, refineries, and fabrication yards.
               </p>
               
               {/* Heavy Duty Field Device Mockup */}
@@ -85,10 +105,10 @@ export default function Deployment() {
                 INFRASTRUCTURE // 02
               </div>
               <h3 className="font-technical text-sm font-bold uppercase tracking-wide text-white mt-3 flex items-center gap-2">
-                Unified Gate Terminal Sync
+                Unified Workforce Access Control
               </h3>
               <p className="text-xs text-industrial-silver leading-relaxed font-sans mt-3">
-                Integrates directly with standard RFID turnstiles, optical QR scanning pillars, and hand-held facial scan tablets. Our edge-sync middleware reconciles gate check-ins with master contractor databases in 200ms, blocking un-onboarded labor instantly.
+                Integrates with RFID turnstiles, QR scanning pillars, and facial recognition tablets. Edge-sync reconciles gate access with contractor databases in 200ms — blocking unverified workers instantly and ensuring only authorized personnel enter site zones.
               </p>
 
               {/* Edge Node Hardware Visualizer */}
@@ -129,10 +149,10 @@ export default function Deployment() {
                 INFRASTRUCTURE // 03
               </div>
               <h3 className="font-technical text-sm font-bold uppercase tracking-wide text-white mt-3 flex items-center gap-2">
-                Enterprise System Integrations
+                Enterprise Operations Integration
               </h3>
               <p className="text-xs text-industrial-silver leading-relaxed font-sans mt-3">
-                No more manual data entry. EPCX exports reconciled work timesheets directly into SAP, Oracle Primavera, Microsoft Dynamics, and local salary disbursement payroll programs, cutting administrative workloads by up to 90%.
+                Eliminate manual data entry. EPCX exports reconciled workforce data, attendance records, and operational reports directly into SAP, Oracle Primavera, and payroll systems — cutting administrative workloads by up to 90%.
               </p>
 
               {/* Direct Sync UI Mockup */}

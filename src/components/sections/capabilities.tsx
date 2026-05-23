@@ -129,18 +129,39 @@ export default function Capabilities() {
   const activeData = CAPABILITIES.find(c => c.id === activeTab) || CAPABILITIES[0];
 
   return (
-    <section id="capabilities" className="bg-background-light py-24 border-b border-industrial-silver relative overflow-hidden industrial-grid">
+    <section id="capabilities" className="bg-background-light py-32 border-b border-industrial-silver relative overflow-hidden industrial-grid">
+      
+      {/* Command Center Atmospheric Background */}
+      <div className="absolute inset-0 z-0">
+        <motion.img 
+          src="/images/command_center.png" 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover opacity-8 mix-blend-overlay"
+          style={{ filter: 'contrast(1.15) brightness(1.05) saturate(0.85)' }}
+          animate={{
+            scale: [1, 1.02, 1],
+            opacity: [0.08, 0.1, 0.08]
+          }}
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/92 via-white/88 to-industrial-slate/5" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="border-l-4 border-industrial-dark pl-4 md:pl-6 max-w-3xl">
+        <div className="border-l-4 border-industrial-dark pl-4 md:pl-6 max-w-3xl mb-12">
           <span className="font-technical text-xs text-industrial-slate uppercase tracking-widest font-bold block">
             [ PLATFORM CAPABILITIES ]
           </span>
-          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-industrial-dark mt-2">
+          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-industrial-dark mt-3">
             INTELLIGENT SITE COMMAND CAPABILITIES
           </h2>
-          <p className="mt-4 text-sm text-industrial-slate leading-relaxed font-sans">
+          <p className="mt-5 text-sm text-industrial-slate leading-relaxed font-sans max-w-2xl">
             EPCX integrates field operations, workforce database registers, compliance pipelines, and executive dashboards into a unified enterprise operations software.
           </p>
         </div>

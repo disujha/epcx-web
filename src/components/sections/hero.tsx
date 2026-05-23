@@ -87,8 +87,30 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen bg-industrial-dark text-white pt-28 pb-16 flex items-center overflow-hidden industrial-grid-dark">
 
+      {/* Atmospheric Industrial Background Layer */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-industrial-dark via-industrial-dark/95 to-industrial-dark/90" />
+        <motion.img 
+          src="/images/hero.png" 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-luminosity"
+          style={{ filter: 'contrast(1.1) brightness(0.7)' }}
+          animate={{
+            scale: [1, 1.05, 1],
+            opacity: [0.2, 0.22, 0.2]
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-industrial-dark/80 via-transparent to-industrial-dark/60" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBMMDQwIDBIMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDQ1LCA0NSwgNDUsIDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30" />
+      </div>
+
       {/* Decorative Top Left warning label */}
-      <div className="absolute top-24 left-8 hidden lg:flex items-center gap-2 border-l-2 border-industrial-lime pl-3 text-[10px] uppercase font-technical text-industrial-silver tracking-widest">
+      <div className="absolute top-24 left-8 hidden lg:flex items-center gap-2 border-l-2 border-industrial-lime pl-3 text-[10px] uppercase font-technical text-industrial-silver tracking-widest z-20">
         <span>Platform State: Stable</span>
         <span className="w-1.5 h-1.5 rounded-full bg-feedback-success status-active"></span>
       </div>
@@ -101,18 +123,17 @@ export default function Hero() {
 
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-industrial-slate/50 border border-industrial-slate rounded-sm max-w-fit mb-6">
               <span className="text-[10px] uppercase font-technical text-industrial-lime tracking-widest font-semibold">
-                [ EPC FIELD-TO-DASHBOARD PLATFORM ]
+                [ ENTERPRISE OPERATIONS INTELLIGENCE ]
               </span>
             </div>
 
             <h1 className="font-technical text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-[1.05] text-white">
-              From Field Photo <br />
-              <span className="text-industrial-lime">to Audited DPR</span> <br />
-              In 30 Seconds
+              Industrial Workforce <br />
+              <span className="text-industrial-lime">& Site Operations Platform</span>
             </h1>
 
             <p className="mt-6 text-sm sm:text-base text-industrial-silver leading-relaxed max-w-xl font-sans">
-              EPCX connects your field supervisors, piping progress tracking, manpower logs, and drawing management into one auditable platform. No forms. No Excel. Just a photo from the field.
+              Replace manual site operations with real-time workforce intelligence. Track attendance, coordinate contractors, ensure salary transparency, and generate industrial reports — all from one unified platform.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -136,16 +157,16 @@ export default function Hero() {
             {/* Quick Metrics Bar */}
             <div className="mt-12 grid grid-cols-3 gap-6 border-t border-industrial-slate/60 pt-6">
               <div>
-                <span className="text-[10px] font-technical uppercase text-industrial-silver tracking-wider block">DPR Generation Time</span>
-                <span className="text-xl font-technical font-bold text-white mt-1 block">&lt; 30 Sec</span>
+                <span className="text-[10px] font-technical uppercase text-industrial-silver tracking-wider block">Real-Time Workforce Visibility</span>
+                <span className="text-xl font-technical font-bold text-white mt-1 block">Live Tracking</span>
               </div>
               <div>
-                <span className="text-[10px] font-technical uppercase text-industrial-silver tracking-wider block">AI Data Accuracy</span>
-                <span className="text-xl font-technical font-bold text-feedback-success mt-1 block">85%+ Conf.</span>
+                <span className="text-[10px] font-technical uppercase text-industrial-silver tracking-wider block">Multi-Site Operations</span>
+                <span className="text-xl font-technical font-bold text-feedback-success mt-1 block">Unified Control</span>
               </div>
               <div>
-                <span className="text-[10px] font-technical uppercase text-industrial-silver tracking-wider block">System Uptime</span>
-                <span className="text-xl font-technical font-bold text-industrial-lime mt-1 block">99.99% SLA</span>
+                <span className="text-[10px] font-technical uppercase text-industrial-silver tracking-wider block">Deployment Ready</span>
+                <span className="text-xl font-technical font-bold text-industrial-lime mt-1 block">14 Days</span>
               </div>
             </div>
 
@@ -160,7 +181,7 @@ export default function Hero() {
                 <div className="flex items-center gap-2">
                   <Activity className="w-4 h-4 text-industrial-lime" />
                   <span className="font-technical text-[10px] font-bold uppercase tracking-wider text-white">
-                    LIVE FIELD CHAT → AI EXTRACTION
+                    LIVE OPERATIONS FEED
                   </span>
                 </div>
                 <div className="flex items-center gap-2 bg-industrial-dark px-2 py-0.5 border border-industrial-slate/85 rounded-sm">
@@ -203,10 +224,10 @@ export default function Hero() {
                 </AnimatePresence>
               </div>
 
-              {/* Extracted DPR Data */}
+              {/* Extracted Operations Data */}
               <div className="p-4">
                 <div className="text-[9px] font-technical uppercase tracking-widest text-industrial-silver mb-3">
-                  EXTRACTED DPR DATA
+                  EXTRACTED OPERATIONS DATA
                 </div>
 
                 <AnimatePresence mode="wait">

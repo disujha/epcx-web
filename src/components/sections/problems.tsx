@@ -104,23 +104,44 @@ export default function Problems() {
   };
 
   return (
-    <section id="problems" className="bg-industrial-dark text-white py-24 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
+    <section id="problems" className="bg-industrial-dark text-white py-32 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
       
+      {/* Industrial Chaos Atmospheric Background */}
+      <div className="absolute inset-0 z-0">
+        <motion.img 
+          src="/images/industry.png" 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-overlay"
+          style={{ filter: 'contrast(1.2) brightness(0.6) saturate(0.8)' }}
+          animate={{
+            scale: [1, 1.03, 1],
+            x: [0, 10, 0]
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-industrial-dark/90 via-industrial-dark/85 to-feedback-error/5" />
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_40%,rgba(239,68,68,0.03)_50%,transparent_60%)]" />
+      </div>
+
       {/* Decorative Corner Framing */}
-      <div className="absolute top-0 left-0 w-32 h-32 border-t border-l border-industrial-slate/40 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 border-b border-r border-industrial-slate/40 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-32 h-32 border-t border-l border-industrial-slate/40 pointer-events-none z-10" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 border-b border-r border-industrial-slate/40 pointer-events-none z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="border-l-4 border-feedback-error pl-4 md:pl-6 max-w-3xl">
+        <div className="border-l-4 border-feedback-error pl-4 md:pl-6 max-w-3xl mb-12">
           <span className="font-technical text-xs text-feedback-error uppercase tracking-widest font-bold block">
             [ SITE OPERATIONAL LIABILITIES ]
           </span>
-          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mt-2">
+          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mt-3">
             THE ANARCHY OF ANALOG SITE OPERATIONS
           </h2>
-          <p className="mt-4 text-sm text-industrial-silver leading-relaxed font-sans">
+          <p className="mt-5 text-sm text-industrial-silver leading-relaxed font-sans max-w-2xl">
             Heavy engineering, construction, and turnaround shutdowns fail due to operations blindspots. Paper records, legacy card scanners, and excel files hide deep commercial leakage, contractor overcharges, and audit vulnerabilities.
           </p>
         </div>

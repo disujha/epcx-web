@@ -5,46 +5,46 @@ import { Clock, BarChart2, FolderOpen, Users, MapPin, CheckCircle, XCircle } fro
 
 const METRIC_CARDS = [
   {
-    label: "DPR Preparation",
-    value: "3 hrs → 30 sec",
-    desc: "AI extracts piping data from field photos automatically",
+    label: "Operational Visibility",
+    value: "Zero → Real-Time",
+    desc: "Live workforce tracking across all site zones and contractors",
     icon: Clock,
   },
   {
-    label: "Data Accuracy",
-    value: "85%+ Confidence",
-    desc: "AI-verified spool numbers, inch-dia, activity types",
+    label: "Reporting Speed",
+    value: "Days → Instant",
+    desc: "Automated operational reports generated in seconds, not days",
     icon: BarChart2,
   },
   {
-    label: "Drawings Tracked",
-    value: "ISO + Line-list",
-    desc: "Digital drawing register with revision management",
+    label: "Contractor Coordination",
+    value: "Manual → Unified",
+    desc: "Single platform for all subcontractor operations and compliance",
     icon: FolderOpen,
   },
   {
-    label: "Manpower Logged",
-    value: "Shift A + B",
-    desc: "Daily attendance by shift, contractor and sub-contractor",
+    label: "Deployment Timeline",
+    value: "Months → 14 Days",
+    desc: "Rapid commissioning with zero site downtime",
     icon: Users,
   },
 ];
 
 export default function CaseStudy() {
   return (
-    <section className="bg-background-light py-24 border-b border-industrial-silver relative overflow-hidden industrial-grid">
+    <section className="bg-background-light py-32 border-b border-industrial-silver relative overflow-hidden industrial-grid">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
         <div className="mb-12">
           <span className="font-technical text-xs text-industrial-lime uppercase tracking-widest font-bold">
-            [ LIVE DEPLOYMENT — CASE STUDY ]
+            [ LIVE DEPLOYMENT — OPERATIONAL CASE STUDY ]
           </span>
           <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-industrial-dark mt-3">
-            PEC Petrochem Engineering Construction
+            Designed For Active Industrial Project Environments
           </h2>
           <p className="mt-3 text-sm text-industrial-dark/70 font-sans max-w-2xl">
-            India&apos;s First EPC Project Running on EPCX — Piping Fabrication &amp; Erection
+            PEC Petrochem Engineering Construction — India&apos;s First EPC Project Running on EPCX for Full Workforce & Site Operations
           </p>
         </div>
 
@@ -107,7 +107,7 @@ export default function CaseStudy() {
                     <span className="text-[9px] font-technical uppercase tracking-widest text-feedback-error font-bold">Before EPCX</span>
                   </div>
                   <p className="text-[10px] font-sans text-industrial-silver leading-relaxed">
-                    WhatsApp group + manual Excel DPRs · 3+ hours/day of data entry · No traceability
+                    Manual attendance logs · WhatsApp coordination · No real-time visibility · 3+ hours/day data entry · Fragmented contractor management
                   </p>
                 </div>
 
@@ -118,7 +118,7 @@ export default function CaseStudy() {
                     <span className="text-[9px] font-technical uppercase tracking-widest text-feedback-success font-bold">After EPCX</span>
                   </div>
                   <p className="text-[10px] font-sans text-industrial-silver leading-relaxed">
-                    Field photo → AI extracts DPR in 30 sec · Full audit trail · Live dashboard updated instantly
+                    Real-time workforce tracking · Unified contractor platform · Live operational dashboards · Automated reporting · Full audit trail
                   </p>
                 </div>
 
@@ -177,12 +177,12 @@ export default function CaseStudy() {
         >
           <div className="p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <p className="text-xs font-sans text-industrial-silver leading-relaxed">
-              EPCX is currently deployed and processing daily piping progress data for{" "}
+              EPCX is currently deployed and managing full workforce operations for{" "}
               <span className="text-white font-semibold">PEC Petrochem Engineering Construction.</span>
             </p>
             <div className="flex items-center gap-2 bg-feedback-success/10 border border-feedback-success/30 px-3 py-1 rounded-xs shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-feedback-success status-active"></span>
-              <span className="text-[9px] font-technical uppercase tracking-widest text-feedback-success font-bold">LIVE</span>
+              <span className="text-[9px] font-technical uppercase tracking-widest text-feedback-success font-bold">LIVE OPERATIONS</span>
             </div>
           </div>
         </motion.div>

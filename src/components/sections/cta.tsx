@@ -104,7 +104,7 @@ export default function CTA() {
   };
 
   return (
-    <section id="demo" className="bg-industrial-dark text-white py-24 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
+    <section id="demo" className="bg-industrial-dark text-white py-32 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
       
       {/* Structural Accent Indicators */}
       <div className="absolute top-0 left-0 w-full h-1 bg-stripes pointer-events-none opacity-20" />
@@ -117,7 +117,7 @@ export default function CTA() {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-industrial-slate/50 border border-industrial-slate rounded-sm max-w-fit mb-6">
                 <span className="text-[10px] uppercase font-technical text-industrial-lime tracking-widest font-semibold">
-                  [ DEPLOYMENT REQUEST GATE ]
+                  [ ENTERPRISE DEPLOYMENT REQUEST ]
                 </span>
               </div>
 
@@ -127,7 +127,7 @@ export default function CTA() {
               </h2>
 
               <p className="mt-6 text-sm text-industrial-silver leading-relaxed font-sans max-w-md">
-                Schedule a 20-minute operational walk-through with our site deployment engineering team. We will review your contractor structures, map your site gates, and compile a custom implementation checklist.
+                Deployable within days. Minimal onboarding friction. Designed for active project environments. Our deployment engineering team will configure your workforce operations, contractor coordination, and reporting systems in 14 days with zero site downtime.
               </p>
 
               {/* Direct Telemetry Touchpoints */}
@@ -151,8 +151,8 @@ export default function CTA() {
                   </div>
                   <div>
                     <span className="text-[9px] font-technical uppercase tracking-wider text-industrial-silver block">OPERATIONAL HELPDESK LINE</span>
-                    <a href="tel:+919876543210" className="text-sm font-semibold text-white hover:text-industrial-lime transition-colors block mt-0.5 font-sans">
-                      +91 98765 43210
+                    <a href="tel:+918369532599" className="text-sm font-semibold text-white hover:text-industrial-lime transition-colors block mt-0.5 font-sans">
+                      +91 83695 32599
                     </a>
                   </div>
                 </div>
@@ -164,7 +164,7 @@ export default function CTA() {
                   <div>
                     <span className="text-[9px] font-technical uppercase tracking-wider text-industrial-silver block">DEPLOYMENT CENTRAL OFFICE</span>
                     <span className="text-xs text-industrial-silver block mt-0.5 font-sans">
-                      Sector-4, Heavy Engineering Hub, Navi Mumbai, MH 400703
+                      Rethela Technology Pvt Ltd, WeWork, Nesco IT Park, Goregaon East, Mumbai 400 063
                     </span>
                   </div>
                 </div>
@@ -178,13 +178,13 @@ export default function CTA() {
                 URGENT OPERATIONS ASSISTANCE //
               </span>
               <a
-                href="https://wa.me/918369532599?text=I%20want%20to%20deploy%20EPCX%20for%20piping%20progress%20tracking%20and%20DPR%20automation%20on%20my%20project.%20Please%20connect%20me%20with%20your%20team."
+                href="https://wa.me/918369532599?text=I%20want%20to%20deploy%20EPCX%20for%20workforce%20operations%20and%20site%20management%20on%20my%20project.%20Please%20connect%20me%20with%20your%20team."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-5 py-3 bg-feedback-success text-white border border-feedback-success font-technical font-bold text-xs uppercase tracking-widest hover:bg-transparent hover:text-feedback-success transition-all duration-300 rounded-sm"
               >
                 <MessageSquare className="w-4 h-4 fill-current" />
-                Chat With Site Engineer
+                Chat With Deployment Engineer
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -200,7 +200,7 @@ export default function CTA() {
             </div>
 
             <span className="font-technical text-xs text-industrial-lime font-bold uppercase tracking-widest block border-b border-industrial-slate/50 pb-3 mb-6">
-              LEAD TELEMETRY CONFIGURATION SHEET
+              ENTERPRISE DEPLOYMENT REQUEST
             </span>
 
             <form onSubmit={handleSubmit} className="space-y-5 font-sans">
@@ -316,7 +316,7 @@ export default function CTA() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="e.g. +91 98765 43210"
+                    placeholder="e.g. +91 83695 32599"
                     className={`w-full bg-industrial-dark border text-xs px-3.5 py-2.5 rounded-xs focus:outline-none focus:border-industrial-lime text-white ${errors.phone ? "border-feedback-error" : "border-industrial-slate"}`}
                   />
                   {errors.phone && <span className="text-[9px] text-feedback-error font-mono mt-1 block">{errors.phone}</span>}
@@ -349,12 +349,12 @@ export default function CTA() {
                   {loading ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin text-industrial-dark" />
-                      SYNCING TELEMETRY DATA...
+                      PROCESSING REQUEST...
                     </>
                   ) : (
                     <>
                       <Send className="w-4 h-4" />
-                      COMMIT TELEMETRY & BOOK AUDIT
+                      SUBMIT DEPLOYMENT REQUEST
                     </>
                   )}
                 </button>

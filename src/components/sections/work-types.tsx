@@ -56,7 +56,7 @@ const WORK_TYPES = [
 
 export default function WorkTypes() {
   return (
-    <section className="bg-industrial-dark text-white py-24 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
+    <section className="bg-industrial-dark text-white py-32 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Section Header */}
@@ -64,10 +64,10 @@ export default function WorkTypes() {
           <span className="font-technical text-xs text-industrial-lime uppercase tracking-widest font-bold block mb-3">
             [ WORK TYPE COVERAGE ]
           </span>
-          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-white">
+          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mt-3">
             BUILT FOR EVERY EPC WORK TYPE
           </h2>
-          <p className="mt-4 text-sm text-industrial-silver leading-relaxed font-sans max-w-2xl">
+          <p className="mt-5 text-sm text-industrial-silver leading-relaxed font-sans max-w-2xl">
             Whether you run piping fabrication, tank erection, or a shutdown turnaround — EPCX tracks progress, manpower, and drawings in the language your field team already uses.
           </p>
         </div>

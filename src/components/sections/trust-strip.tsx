@@ -3,14 +3,14 @@
 import { FileText, ShieldCheck, Cpu, Activity, FolderOpen, Users, Cloud, Radio } from "lucide-react";
 
 const STRIP_ITEMS = [
-  { text: "PIPING DPR AUTO-EXTRACTED", icon: FileText, status: "ok" },
-  { text: "PEC PETROCHEM — LIVE DEPLOYMENT", icon: ShieldCheck, status: "ok" },
-  { text: "AI CONFIDENCE: 85%+ ACCURACY", icon: Cpu, status: "active" },
-  { text: "WELDING & FITUP TRACKED LIVE", icon: Activity, status: "ok" },
-  { text: "DRAWINGS MANAGED DIGITALLY", icon: FolderOpen, status: "normal" },
-  { text: "SHIFT A + B ATTENDANCE LOGGED", icon: Users, status: "ok" },
-  { text: "CLOUD-BASED FIELD ACCESS", icon: Cloud, status: "ok" },
-  { text: "REAL-TIME AUDIT REPORTING", icon: Radio, status: "active" },
+  { text: "REAL PROJECT DEPLOYMENT READY", icon: ShieldCheck, status: "ok" },
+  { text: "WORKFORCE VISIBILITY ACROSS SITES", icon: Users, status: "ok" },
+  { text: "CONTRACTOR INTELLIGENCE UNIFIED", icon: Activity, status: "active" },
+  { text: "REAL-TIME OPERATIONAL REPORTING", icon: Radio, status: "ok" },
+  { text: "MULTI-SITE OPERATIONS SUPPORT", icon: Cloud, status: "ok" },
+  { text: "14-DAY RAPID DEPLOYMENT", icon: FileText, status: "active" },
+  { text: "ENTERPRISE-GRADE SECURITY", icon: Cpu, status: "ok" },
+  { text: "OFFLINE-FIRST FIELD CAPABILITY", icon: FolderOpen, status: "ok" },
 ];
 
 export default function TrustStrip() {
