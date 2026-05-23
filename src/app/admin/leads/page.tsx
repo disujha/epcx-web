@@ -14,8 +14,8 @@ import {
   clearAdminSession 
 } from "@/lib/auth";
 import { 
-  Shield, ArrowLeft, Filter, Download, RefreshCw, 
-  CheckCircle, Clock, Calendar, Phone, Mail, Building2,
+  Shield, ArrowLeft, Download, RefreshCw, 
+  Calendar, Phone, Mail, Building2,
   Users, MessageSquare, MoreVertical, Search, Lock, LogOut
 } from "lucide-react";
 

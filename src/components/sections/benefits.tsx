@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import { 
-  TrendingDown, CheckSquare, Zap, Eye, BarChart2, ShieldAlert,
-  ArrowDown, ShieldCheck, XCircle
+  TrendingDown, CheckSquare, Zap, Eye, BarChart2, ShieldCheck, XCircle
 } from "lucide-react";
 
 const BENEFITS = [

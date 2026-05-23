@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import { 
-  Smartphone, Monitor, RefreshCw, Radio, Server, ShieldCheck, 
-  MapPin, CheckCircle, ChevronRight, CalendarClock, ShieldAlert
+  Smartphone, RefreshCw, Radio, Server, ChevronRight, ShieldCheck
 } from "lucide-react";
 
 // Implementation steps

@@ -6,7 +6,7 @@ interface WhatsAppMessage {
   to: string;
   templateName?: string;
   templateLanguage?: string;
-  components?: any[];
+  components?: Record<string, unknown>[];
   text?: string;
 }
 

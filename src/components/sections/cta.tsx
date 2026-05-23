@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { saveDeploymentRequest, DeploymentRequest } from "@/lib/firebase";
+import { saveDeploymentRequest } from "@/lib/firebase";
 import { 
   ShieldCheck, ArrowUpRight, Phone, Mail, MapPin, 
-  Send, Loader2, MessageSquare, AlertTriangle, HardHat, Check
+  Send, Loader2, MessageSquare, AlertTriangle
 } from "lucide-react";
 
 export default function CTA() {
