@@ -1,89 +1,116 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, serverTimestamp, Firestore } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, serverTimestamp, Firestore, getDocs, query, where, updateDoc, doc, orderBy } from 'firebase/firestore';
 
-// Environment variables configured on Vercel or locally
+// Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyD_NPXnMtm5WZRB0ZSuHP8NZGR0gvogG5o",
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "epcxsite.firebaseapp.com",
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "epcxsite",
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "epcxsite.firebasestorage.app",
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "504230716580",
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:504230716580:web:e842920275eb9334c83231",
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || "G-ZZ0EHQ8YVP",
 };
-
-// Check if credentials are valid/present
-const isFirebaseValid = 
-  firebaseConfig.apiKey && 
-  firebaseConfig.projectId && 
-  firebaseConfig.appId;
 
 let app;
 let db: Firestore | null = null;
 
-if (isFirebaseValid) {
-  try {
-    app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-    db = getFirestore(app);
-  } catch (error) {
-    console.error('Firebase initialization failed, falling back to mock database:', error);
-  }
+try {
+  app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+  db = getFirestore(app);
+} catch (error) {
+  console.error('Firebase initialization failed:', error);
 }
 
 export { db };
 
-// Strong Lead Interface
-export interface EPCXLead {
+// Enhanced Deployment Request Interface
+export interface DeploymentRequest {
   name: string;
   company: string;
-  projectType: string;
-  workforceSize: string;
   phone: string;
   email: string;
-  submittedAt?: unknown;
-  userAgent?: string;
-  status: 'new' | 'contacted' | 'qualified' | 'demo_scheduled';
+  projectType: string;
+  workforceSize: string;
+  message?: string;
+  preferredContactMethod: 'email' | 'phone' | 'whatsapp';
+  currentSystem?: string;
+  deploymentTimeline?: string;
+  createdAt?: unknown;
+  status: 'new' | 'contacted' | 'demo_scheduled' | 'pilot_running' | 'converted';
+  whatsappOptIn?: boolean;
 }
 
-/**
- * Enterprise service layer that automatically toggles between Live Firestore and Simulated Local DB.
- * Ensures the website is 100% operationally reliable under any deployment circumstances.
- */
-export async function saveLeadSubmission(lead: Omit<EPCXLead, 'status'>): Promise<{ success: boolean; id: string; isMock: boolean }> {
-  const leadData: EPCXLead = {
-    ...lead,
+// Save deployment request to Firestore
+export async function saveDeploymentRequest(request: Omit<DeploymentRequest, 'status' | 'createdAt'>): Promise<{ success: boolean; id: string; error?: string }> {
+  const requestData: DeploymentRequest = {
+    ...request,
     status: 'new',
   };
 
-  if (db) {
-    try {
-      const leadsCol = collection(db, 'epcx_leads');
-      const docRef = await addDoc(leadsCol, {
-        ...leadData,
-        submittedAt: serverTimestamp(),
-        userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : 'Server',
-      });
-      return { success: true, id: docRef.id, isMock: false };
-    } catch (error) {
-      console.error('Firestore save failed, degrading to mock persistence:', error);
-    }
+  if (!db) {
+    return { success: false, id: '', error: 'Firebase not initialized' };
   }
 
-  // Fallback / Mock Behavior (localStorage)
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const mockId = 'lead_' + Math.random().toString(36).substring(2, 11);
-      if (typeof window !== 'undefined') {
-        const storedLeads = JSON.parse(localStorage.getItem('epcx_leads') || '[]');
-        storedLeads.push({
-          id: mockId,
-          ...leadData,
-          submittedAt: new Date().toISOString(),
-          userAgent: window.navigator.userAgent,
-        });
-        localStorage.setItem('epcx_leads', JSON.stringify(storedLeads));
-      }
-      console.log('✓ Lead saved to local simulation store (Firebase Config offline):', leadData);
-      resolve({ success: true, id: mockId, isMock: true });
-    }, 1200); // Realistic network delay for visual loading state testing
-  });
+  try {
+    const requestsCol = collection(db, 'deployment_requests');
+    const docRef = await addDoc(requestsCol, {
+      ...requestData,
+      createdAt: serverTimestamp(),
+    });
+    return { success: true, id: docRef.id };
+  } catch (error) {
+    console.error('Firestore save failed:', error);
+    return { success: false, id: '', error: error instanceof Error ? error.message : 'Unknown error' };
+  }
+}
+
+// Get all deployment requests (for admin dashboard)
+export async function getDeploymentRequests(): Promise<(DeploymentRequest & { id: string })[]> {
+  if (!db) return [];
+
+  try {
+    const requestsCol = collection(db, 'deployment_requests');
+    const q = query(requestsCol, orderBy('createdAt', 'desc'));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    } as DeploymentRequest & { id: string }));
+  } catch (error) {
+    console.error('Failed to fetch deployment requests:', error);
+    return [];
+  }
+}
+
+// Update deployment request status
+export async function updateDeploymentRequestStatus(id: string, status: DeploymentRequest['status']): Promise<boolean> {
+  if (!db) return false;
+
+  try {
+    const docRef = doc(db, 'deployment_requests', id);
+    await updateDoc(docRef, { status });
+    return true;
+  } catch (error) {
+    console.error('Failed to update status:', error);
+    return false;
+  }
+}
+
+// Filter deployment requests by status
+export async function getDeploymentRequestsByStatus(status: DeploymentRequest['status']): Promise<(DeploymentRequest & { id: string })[]> {
+  if (!db) return [];
+
+  try {
+    const requestsCol = collection(db, 'deployment_requests');
+    const q = query(requestsCol, where('status', '==', status), orderBy('createdAt', 'desc'));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    } as DeploymentRequest & { id: string }));
+  } catch (error) {
+    console.error('Failed to fetch deployment requests by status:', error);
+    return [];
+  }
 }

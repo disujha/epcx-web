@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { saveLeadSubmission } from "@/lib/firebase";
+import { saveDeploymentRequest, DeploymentRequest } from "@/lib/firebase";
 import { 
   ShieldCheck, ArrowUpRight, Phone, Mail, MapPin, 
-  Send, Loader2, MessageSquare, AlertTriangle, HardHat
+  Send, Loader2, MessageSquare, AlertTriangle, HardHat, Check
 } from "lucide-react";
 
 export default function CTA() {
@@ -13,13 +13,17 @@ export default function CTA() {
     company: "",
     projectType: "",
     workforceSize: "",
-    primaryInterest: "",
     phone: "",
     email: "",
+    message: "",
+    preferredContactMethod: "email" as "email" | "phone" | "whatsapp",
+    currentSystem: "",
+    deploymentTimeline: "",
+    whatsappOptIn: false,
   });
 
   const [loading, setLoading] = useState(false);
-  const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string; isMock?: boolean } | null>(null);
+  const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const validateForm = () => {
@@ -49,9 +53,13 @@ export default function CTA() {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: type === "checkbox" ? checked : value 
+    }));
     // Clear field-specific error on change
     if (errors[name]) {
       setErrors(prev => {
@@ -70,14 +78,24 @@ export default function CTA() {
 
     setLoading(true);
     try {
-      const result = await saveLeadSubmission(formData);
+      const result = await saveDeploymentRequest({
+        name: formData.name,
+        company: formData.company,
+        projectType: formData.projectType,
+        workforceSize: formData.workforceSize,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message,
+        preferredContactMethod: formData.preferredContactMethod,
+        currentSystem: formData.currentSystem,
+        deploymentTimeline: formData.deploymentTimeline,
+        whatsappOptIn: formData.whatsappOptIn,
+      });
+      
       if (result.success) {
         setSubmitResult({
           success: true,
-          message: result.isMock 
-            ? "DEMO TELEMETRY COMMITTED (Simulated Offline Mode Successful)" 
-            : "DEMO REQUEST TRANSMITTED DIRECTLY TO FIRESTORE",
-          isMock: result.isMock
+          message: "DEPLOYMENT REQUEST SUBMITTED SUCCESSFULLY. Our team will contact you within 24 hours."
         });
         // Clear form
         setFormData({
@@ -85,12 +103,16 @@ export default function CTA() {
           company: "",
           projectType: "",
           workforceSize: "",
-          primaryInterest: "",
           phone: "",
           email: "",
+          message: "",
+          preferredContactMethod: "email",
+          currentSystem: "",
+          deploymentTimeline: "",
+          whatsappOptIn: false,
         });
       } else {
-        throw new Error("Callback returned success = false");
+        throw new Error(result.error || "Submission failed");
       }
     } catch (err) {
       console.error(err);
@@ -286,22 +308,82 @@ export default function CTA() {
                 </div>
               </div>
 
-              {/* Form Row: Primary Interest (full width) */}
+              {/* Form Row: Preferred Contact Method */}
               <div>
-                <label htmlFor="primaryInterest" className="block text-[10px] font-technical uppercase text-industrial-silver tracking-wider mb-2 font-bold">Primary Interest *</label>
+                <label htmlFor="preferredContactMethod" className="block text-[10px] font-technical uppercase text-industrial-silver tracking-wider mb-2 font-bold">Preferred Contact Method *</label>
                 <select
-                  id="primaryInterest"
-                  name="primaryInterest"
-                  value={formData.primaryInterest}
+                  id="preferredContactMethod"
+                  name="preferredContactMethod"
+                  value={formData.preferredContactMethod}
                   onChange={handleInputChange}
                   className="w-full bg-industrial-dark border border-industrial-slate text-xs px-3.5 py-2.5 rounded-xs focus:outline-none focus:border-industrial-lime text-white appearance-none"
                 >
-                  <option value="">What best describes your need?</option>
-                  <option value="Daily Progress Reporting (DPR)">Daily Progress Reporting (DPR)</option>
-                  <option value="Workforce & Attendance">Workforce & Attendance Management</option>
-                  <option value="Drawing Management">Drawing & Document Management</option>
-                  <option value="Full Platform">Full Platform (All of the above)</option>
+                  <option value="email">Email</option>
+                  <option value="phone">Phone Call</option>
+                  <option value="whatsapp">WhatsApp</option>
                 </select>
+              </div>
+
+              {/* Form Row: Current System */}
+              <div>
+                <label htmlFor="currentSystem" className="block text-[10px] font-technical uppercase text-industrial-silver tracking-wider mb-2 font-bold">Current System (Optional)</label>
+                <input
+                  type="text"
+                  id="currentSystem"
+                  name="currentSystem"
+                  value={formData.currentSystem}
+                  onChange={handleInputChange}
+                  placeholder="e.g. Excel spreadsheets, manual logs, other software"
+                  className="w-full bg-industrial-dark border border-industrial-slate text-xs px-3.5 py-2.5 rounded-xs focus:outline-none focus:border-industrial-lime text-white"
+                />
+              </div>
+
+              {/* Form Row: Deployment Timeline */}
+              <div>
+                <label htmlFor="deploymentTimeline" className="block text-[10px] font-technical uppercase text-industrial-silver tracking-wider mb-2 font-bold">Deployment Timeline (Optional)</label>
+                <select
+                  id="deploymentTimeline"
+                  name="deploymentTimeline"
+                  value={formData.deploymentTimeline}
+                  onChange={handleInputChange}
+                  className="w-full bg-industrial-dark border border-industrial-slate text-xs px-3.5 py-2.5 rounded-xs focus:outline-none focus:border-industrial-lime text-white appearance-none"
+                >
+                  <option value="">Select Timeline...</option>
+                  <option value="Immediate">Immediate (Within 1 week)</option>
+                  <option value="1-2 weeks">1-2 weeks</option>
+                  <option value="1 month">Within 1 month</option>
+                  <option value="3 months">Within 3 months</option>
+                  <option value="Planning phase">Still in planning phase</option>
+                </select>
+              </div>
+
+              {/* Form Row: Message */}
+              <div>
+                <label htmlFor="message" className="block text-[10px] font-technical uppercase text-industrial-silver tracking-wider mb-2 font-bold">Additional Details (Optional)</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Describe your project requirements, challenges, or any specific questions..."
+                  rows={3}
+                  className="w-full bg-industrial-dark border border-industrial-slate text-xs px-3.5 py-2.5 rounded-xs focus:outline-none focus:border-industrial-lime text-white resize-none"
+                />
+              </div>
+
+              {/* WhatsApp Opt-in */}
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="whatsappOptIn"
+                  name="whatsappOptIn"
+                  checked={formData.whatsappOptIn}
+                  onChange={handleInputChange}
+                  className="w-4 h-4 bg-industrial-dark border border-industrial-slate rounded focus:outline-none focus:border-industrial-lime"
+                />
+                <label htmlFor="whatsappOptIn" className="text-[10px] font-technical uppercase text-industrial-silver tracking-wider">
+                  Opt-in to receive WhatsApp updates about your deployment request
+                </label>
               </div>
 
               {/* Form Row: Phone & Email */}
@@ -381,11 +463,6 @@ export default function CTA() {
                   <p className="font-sans mt-0.5 leading-relaxed">
                     {submitResult.message}
                   </p>
-                  {submitResult.success && submitResult.isMock && (
-                    <span className="text-[10px] font-mono block mt-1.5 opacity-80 border-t border-feedback-success/20 pt-1.5">
-                      NOTE: Firebase config keys are empty in local env. Safe local sandbox simulated successfully.
-                    </span>
-                  )}
                 </div>
               </div>
             )}
