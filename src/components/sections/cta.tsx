@@ -178,7 +178,7 @@ export default function CTA() {
                 URGENT OPERATIONS ASSISTANCE //
               </span>
               <a
-                href="https://wa.me/919876543210?text=I%20want%20to%20deploy%20EPCX%20for%20piping%20progress%20tracking%20and%20DPR%20automation%20on%20my%20project.%20Please%20connect%20me%20with%20your%20team."
+                href="https://wa.me/918369532599?text=I%20want%20to%20deploy%20EPCX%20for%20piping%20progress%20tracking%20and%20DPR%20automation%20on%20my%20project.%20Please%20connect%20me%20with%20your%20team."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 px-5 py-3 bg-feedback-success text-white border border-feedback-success font-technical font-bold text-xs uppercase tracking-widest hover:bg-transparent hover:text-feedback-success transition-all duration-300 rounded-sm"
