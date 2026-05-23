@@ -68,6 +68,15 @@ export default function CaseStudy() {
                 </span>
               </div>
 
+              {/* Client Logo */}
+              <div className="mb-4">
+                <img 
+                  src="/pec.png" 
+                  alt="PEC Petrochem Engineering Construction" 
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
+
               {/* Client */}
               <h3 className="font-technical text-sm font-bold uppercase tracking-tight text-white leading-snug mb-4">
                 PEC Petrochem Engineering Construction
