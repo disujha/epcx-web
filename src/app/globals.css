@@ -1,26 +1,161 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Brigends";
+  src: url("/fonts/Brigends Expanded.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-primary-bg: #f3f4f6;          /* Clean industrial light grey */
+  --color-industrial-dark: #111827;     /* Command center deep panel background */
+  --color-industrial-slate: #374151;    /* Slate border/secondary modules */
+  --color-industrial-silver: #d1d5db;   /* Telemetry panel labels */
+  --color-industrial-lime: #b8ff3b;     /* High-visibility electric lime accent */
+  
+  --color-feedback-success: #84cc16;    /* Normal operation Green */
+  --color-feedback-warning: #f59e0b;    /* Level-2 Alert Orange */
+  --color-feedback-error: #ef4444;      /* Level-1 Alert Red */
+
+  --font-sans: var(--font-satoshi), system-ui, -apple-system, sans-serif;
+  --font-technical: var(--font-space-grotesk), monospace;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3f4f6;
+  --foreground: #111827;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Custom Base Styles */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Command Center Utilities */
+
+/* Subtle Scanline/Grid Backdrop Overlay */
+.industrial-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(55, 65, 81, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(55, 65, 81, 0.04) 1px, transparent 1px);
+}
+
+.industrial-grid-dark {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Custom Technical Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border: 1px solid #111827;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b8ff3b;
+}
+
+/* Status Indicator pulsing animation */
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.15);
+  }
+}
+
+.status-active {
+  animation: status-pulse 2s infinite ease-in-out;
+}
+
+/* Glassmorphism Panels */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(209, 213, 219, 0.1);
+}
+
+/* Technical Corner Brackets */
+.corner-brackets {
+  position: relative;
+}
+
+.corner-brackets::before, .corner-brackets::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #b8ff3b;
+  border-style: solid;
+  pointer-events: none;
+}
+
+.corner-brackets::before {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+
+.corner-brackets::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+/* Carbon mesh background */
+.carbon-panel {
+  background-color: #111827;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 0);
+  background-size: 8px 8px;
+}
+
+/* Sleek Button Hover Effect */
+.btn-industrial {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-industrial::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(184, 255, 59, 0.2),
+    transparent
+  );
+  transition: all 0.5s ease;
+}
+
+.btn-industrial:hover::after {
+  left: 100%;
 }
