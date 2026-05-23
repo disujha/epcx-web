@@ -3,6 +3,7 @@ import Hero from "@/components/sections/hero";
 import TrustStrip from "@/components/sections/trust-strip";
 import CaseStudy from "@/components/sections/case-study";
 import Problems from "@/components/sections/problems";
+import OperationalStory from "@/components/sections/operational-story";
 import Capabilities from "@/components/sections/capabilities";
 import WorkTypes from "@/components/sections/work-types";
 import Deployment from "@/components/sections/deployment";
@@ -30,6 +31,9 @@ export default function Home() {
 
       {/* 4. Dark Problems Telemetry Alerts Section */}
       <Problems />
+
+      {/* 4.5 Operational Storytelling Section */}
+      <OperationalStory />
 
       {/* 5. Interactive Capabilities Console Grid */}
       <Capabilities />

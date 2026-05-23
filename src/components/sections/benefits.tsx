@@ -53,7 +53,7 @@ const BENEFITS = [
 
 export default function Benefits() {
   return (
-    <section id="benefits" className="bg-industrial-dark text-white py-24 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
+    <section id="benefits" className="bg-industrial-dark text-white py-32 border-b border-industrial-slate relative overflow-hidden industrial-grid-dark">
       
       {/* Decorative corners */}
       <div className="absolute top-0 right-0 w-24 h-24 border-r border-t border-industrial-slate/40 pointer-events-none" />
@@ -62,14 +62,14 @@ export default function Benefits() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="border-l-4 border-industrial-lime pl-4 md:pl-6 max-w-3xl">
+        <div className="border-l-4 border-industrial-lime pl-4 md:pl-6 max-w-3xl mb-12">
           <span className="font-technical text-xs text-industrial-lime uppercase tracking-widest font-bold block">
             [ ECONOMIC & OPERATIONAL OUTCOMES ]
           </span>
-          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mt-2">
+          <h2 className="font-technical text-3xl md:text-4xl font-bold uppercase tracking-tight text-white mt-3">
             MEASURABLE FIELD OPERATING RESULTS
           </h2>
-          <p className="mt-4 text-sm text-industrial-silver leading-relaxed font-sans">
+          <p className="mt-5 text-sm text-industrial-silver leading-relaxed font-sans max-w-2xl">
             EPCX replaces operations chaos with structured, highly credible telemetry. Discover the clear, field-tested commercial outcomes our platform delivers to owners, operators, and contractors.
           </p>
         </div>

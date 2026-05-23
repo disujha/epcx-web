@@ -1,6 +1,7 @@
 "use client";
 
 import { Mail, Phone, ChevronUp } from "lucide-react";
+import { motion } from "framer-motion";
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -36,8 +37,27 @@ export default function Footer() {
   return (
     <footer className="bg-industrial-dark text-white pt-16 pb-8 border-t border-industrial-slate font-sans relative overflow-hidden select-none">
       
+      {/* Abstract Industrial Topology Background */}
+      <div className="absolute inset-0 z-0">
+        <motion.img 
+          src="/images/footer.png" 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover opacity-6 mix-blend-luminosity"
+          style={{ filter: 'contrast(1.2) brightness(0.5) saturate(0.7)' }}
+          animate={{
+            opacity: [0.06, 0.08, 0.06]
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-industrial-dark/95 via-industrial-dark/90 to-industrial-dark/85" />
+      </div>
+
       {/* Structural Accent Indicators */}
-      <div className="absolute top-0 left-0 w-2.5 h-full bg-industrial-slate/40" />
+      <div className="absolute top-0 left-0 w-2.5 h-full bg-industrial-slate/40 z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
