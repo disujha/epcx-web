@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { 
   getDeploymentRequests, 
   updateDeploymentRequestStatus, 
@@ -171,10 +172,10 @@ export default function AdminLeadsPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <a href="/" className="flex items-center gap-2 text-industrial-silver hover:text-white transition-colors">
+                  <Link href="/" className="flex items-center gap-2 text-industrial-silver hover:text-white transition-colors">
                     <ArrowLeft className="w-5 h-5" />
                     <span className="text-sm font-technical uppercase tracking-wider">Back to Site</span>
-                  </a>
+                  </Link>
                   <div className="h-6 w-px bg-industrial-slate" />
                   <div className="flex items-center gap-2">
                     <Shield className="w-5 h-5 text-industrial-lime" />
